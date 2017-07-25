@@ -4,7 +4,7 @@ import numpy as np
 import numba
 
 
-@numba.jit
+@numba.jit(nopython=True)
 def correlate(t, u, bins):
     """Correlate timestamps in `t` and `u` using time lags `bins`.
     """

@@ -54,7 +54,9 @@ extensions = [
     'sphinx.ext.napoleon',
     'IPython.sphinxext.ipython_console_highlighting',
 ]
-nbsphinx_allow_errors = False
+nbsphinx_allow_errors = True
+nbsphinx_execute = 'always'  # 'never'
+nbsphinx_timeout = 60
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -95,7 +97,7 @@ release = pycorrelate.__version__
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '**.ipynb_checkpoints']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
