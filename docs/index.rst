@@ -9,6 +9,7 @@ Documentation
    installation
    usage
    api
+   notebooks/pycorrelate-examples
    contributing
    authors
    history
