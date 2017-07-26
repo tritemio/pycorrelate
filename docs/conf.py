@@ -54,7 +54,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'IPython.sphinxext.ipython_console_highlighting',
 ]
-nbsphinx_allow_errors = True
+nbsphinx_allow_errors = False
 nbsphinx_execute = 'always'  # 'never'
 nbsphinx_timeout = 60
 
