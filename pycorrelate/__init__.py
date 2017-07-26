@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
-"""Top-level package for Pycorrelate."""
 from .pycorrelate import correlate
+from .utils import download_file
+
 
 __author__ = """Antonino Ingargiola"""
 __email__ = 'tritemio@gmail.com'
