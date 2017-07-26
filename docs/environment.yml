@@ -10,6 +10,7 @@ dependencies:
 - nbformat
 - jupyter_client
 - ipython
+- ipykernel
 - sphinx>=1.5.1
 - sphinx_rtd_theme
 - tornado
