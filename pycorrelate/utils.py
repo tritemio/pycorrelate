@@ -20,7 +20,7 @@ def download_file(url, save_dir='./'):
     print('URL:  %s' % url)
     print('File: %s\n ' % fname)
 
-    path = Path(save_dir, fname).resolve()
+    path = Path(save_dir, fname)
     if path.exists():
         print('File already on disk: %s \nDelete it to re-download.' % path)
         return
