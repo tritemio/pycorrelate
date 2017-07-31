@@ -1,4 +1,4 @@
-from .pycorrelate import correlate
+from .pycorrelate import *
 from .utils import download_file
 
 
