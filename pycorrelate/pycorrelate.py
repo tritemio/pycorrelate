@@ -114,8 +114,8 @@ def ucorrelate(t, u, maxlags=None):
     return C
 
 
-def make_lags(exp_min, exp_max, points_per_base, base=10):
-    """Make a log-spaced array useful as time-lags bins.
+def make_loglags(exp_min, exp_max, points_per_base, base=10):
+    """Make a log-spaced array useful as lag bins for cross-correlation.
 
     Arguments:
         exp_min (int): exponent of the minimum value
@@ -132,7 +132,7 @@ def make_lags(exp_min, exp_max, points_per_base, base=10):
         Compute log10-spaced bins with 2 bins per decade, starting
         from 10^-1 and stopping at 10^3::
 
-            >>> make_bins(-1, 3, 2)
+            >>> make_loglags(-1, 3, 2)
             array([  1.00000000e-01,   3.16227766e-01,   1.00000000e+00,
                      3.16227766e+00,   1.00000000e+01,   3.16227766e+01,
                      1.00000000e+02,   3.16227766e+02,   1.00000000e+03])
