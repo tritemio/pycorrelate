@@ -18,24 +18,27 @@ Pycorrelate
      :alt: Updates
 
 
-**Pycorrelate** computes fast and accurate correlations of timestamps
-with arbitrary time lags.
-This type of correlation is very common in physics or biophysics
-for techniques such as
+**Pycorrelate** computes fast and accurate cross-correlation over
+arbitrary time lags.
+Cross-correlations can be calculated on "uniformly-sampled" signals
+or on "point-processes", such as photon timestamps.
+Pycorrelate allows computing cross-correlation at log-spaced lags covering
+several orders of magnitude. This type of cross-correlation is
+commonly used in physics or biophysics for techniques such as
 *fluorescence correlation spectroscopy* (`FCS <https://en.wikipedia.org/wiki/Fluorescence_correlation_spectroscopy>`__) or
 *dynamic light scattering* (`DLS <https://en.wikipedia.org/wiki/Dynamic_light_scattering>`__).
 
-Correlation is implemented using the algorithm described in
+The cross-correlation on uniformly-spaced signal is similar to the
+`numpy.correlate` function, but allows defining a max lag for efficiency.
+
+The point-process cross-correlation is implemented using the algorithm
+described in
 `Laurence et al. Optics Letters (2006) <https://doi.org/10.1364/OL.31.000829>`__.
-This is a generalization of the multi-tau algorithm which retains
+This algorithm is a generalization of the multi-tau algorithm which retains
 high execution speed while allowing arbitrary time-lag bins.
 
 Pycorrelate is implemented in Python 3 and operates on standard numpy arrays.
-If you need compute correlation of signals defined as function of time
-(i.e. timetraces) you should use the standard functions
-``numpy.correlate`` or ``scipy.signal.correlate``.
-Pycorrelate is useful to efficiently compute correlation
-when inputs are *timestamps of discrete events*, such as photon arrival times.
+Execution speed is optimized using `numba <https://numba.pydata.org/>`__.
 
 * Free software: GNU General Public License v3
 * Documentation: https://pycorrelate.readthedocs.io.

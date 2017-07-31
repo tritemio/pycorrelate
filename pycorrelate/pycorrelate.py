@@ -1,6 +1,6 @@
 """
 The following functions to compute linear correlation on discrete signals
-or on point-processes (e.g. timestamps.)
+or on point-processes (e.g. timestamps).
 """
 
 import numpy as np
@@ -129,8 +129,8 @@ def make_lags(exp_min, exp_max, points_per_base, base=10):
 
     Example:
 
-        Compute log10-spaced bins with 3 bins per decade, starting
-        from 10^-3 and stopping at 10^4::
+        Compute log10-spaced bins with 2 bins per decade, starting
+        from 10^-1 and stopping at 10^3::
 
             >>> make_bins(-1, 3, 2)
             array([  1.00000000e-01,   3.16227766e-01,   1.00000000e+00,
