@@ -28,14 +28,23 @@ commonly used in physics or biophysics for techniques such as
 *fluorescence correlation spectroscopy* (`FCS <https://en.wikipedia.org/wiki/Fluorescence_correlation_spectroscopy>`__) or
 *dynamic light scattering* (`DLS <https://en.wikipedia.org/wiki/Dynamic_light_scattering>`__).
 
-The cross-correlation on uniformly-spaced signal is similar to the
-`numpy.correlate` function, but allows defining a max lag for efficiency.
+Two types of correlations are implemented:
 
-The point-process cross-correlation is implemented using the algorithm
-described in
-`Laurence et al. Optics Letters (2006) <https://doi.org/10.1364/OL.31.000829>`__.
-This algorithm is a generalization of the multi-tau algorithm which retains
-high execution speed while allowing arbitrary time-lag bins.
+- `ucorrelate <https://pycorrelate.readthedocs.io/en/latest/api.html#pycorrelate.pycorrelate.ucorrelate>`__:
+  the classical text-book linear cross-correlation between two signals
+  defined at **uniformly spaced** intervals.
+  Only positive lags are computed and a max lag can be specified.
+  Thanks to the limit in the computed lags, this function is much faster than
+  `numpy.correlate <https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate>`__.
+
+- `pcorrelate <https://pycorrelate.readthedocs.io/en/latest/api.html#pycorrelate.pycorrelate.pcorrelate>`__:
+  cross-correlation of discrete events
+  in a point-process. In this case input arrays can be timestamps or
+  positions of "events", for example are **photon arrival times**.
+  This function implements the algorithm in
+  `Laurence et al. Optics Letters (2006) <https://doi.org/10.1364/OL.31.000829>`__.
+  This algorithm is a generalization of the multi-tau algorithm which retains
+  high execution speed while allowing arbitrary time-lag bins.
 
 Pycorrelate is implemented in Python 3 and operates on standard numpy arrays.
 Execution speed is optimized using `numba <https://numba.pydata.org/>`__.

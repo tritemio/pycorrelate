@@ -53,10 +53,15 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'IPython.sphinxext.ipython_console_highlighting',
+    'sphinx.ext.intersphinx',
 ]
 nbsphinx_allow_errors = False
 nbsphinx_execute = 'always'  # 'never'
 nbsphinx_timeout = 60
+
+intersphinx_mapping = {
+    'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

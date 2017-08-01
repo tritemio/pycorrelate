@@ -13,18 +13,24 @@ def pcorrelate(t, u, bins):
 
     The input arrays need to be values of a point process, such as
     photon arrival times or positions. The correlation is efficiently
-    computed on an arbitrary array of bins that can span several orders
-    of magnitudes without actual binning the inputs according to
+    computed on an arbitrary array of lag-bins. For example bins can be
+    uniformly spaced in log-space and span several orders of magnitudes.
+    This function implements the algorithm described in
     `(Laurence 2006) <https://doi.org/10.1364/OL.31.000829>`__.
 
     Arguments:
-        t (array): first timestamp array to correlate
-        u (array): second timestamp array to correlate
-        bins (array): bin edges for lags.
+        t (array): first array of "points" to correlate. The array needs
+            to be monothonically increasing.
+        u (array): second array of "points" to correlate. The array needs
+            to be monothonically increasing.
+        bins (array): bin edges for lags where correlation is computed.
 
     Returns:
         Array containing the correlation of `t` and `u`.
         The size is `len(bins) - 1`.
+
+    See also:
+        :func:`make_loglags` to genetate log-spaced lag bins.
     """
     nbins = len(bins) - 1
 
@@ -70,7 +76,7 @@ def ucorrelate(t, u, maxlags=None):
 
     The correlation is defined only for positive lags (including zero).
     The input arrays represent signals defined at uniformily-spaced
-    points. This function is equivalent to `numpy.correlate`, but can
+    points. This function is equivalent to :func:`numpy.correlate`, but can
     efficiently compute correlations on a limited number of lags.
 
     Note that binning point-processes with uniform bins, provides
@@ -117,6 +123,9 @@ def ucorrelate(t, u, maxlags=None):
 def make_loglags(exp_min, exp_max, points_per_base, base=10):
     """Make a log-spaced array useful as lag bins for cross-correlation.
 
+    This function conveniently creates an arrays on lag-bins to be used
+    with :func:`pcorrelate`.
+
     Arguments:
         exp_min (int): exponent of the minimum value
         exp_max (int): exponent of the maximum value
@@ -136,6 +145,9 @@ def make_loglags(exp_min, exp_max, points_per_base, base=10):
             array([  1.00000000e-01,   3.16227766e-01,   1.00000000e+00,
                      3.16227766e+00,   1.00000000e+01,   3.16227766e+01,
                      1.00000000e+02,   3.16227766e+02,   1.00000000e+03])
+
+    See also:
+        :func:`pcorrelate`
     """
     num_points = points_per_base * (exp_max - exp_min) + 1
     bins = np.logspace(exp_min, exp_max, num_points, base=base)
