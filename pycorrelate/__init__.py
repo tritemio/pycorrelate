@@ -1,5 +1,5 @@
 from .pycorrelate import *
-from .utils import download_file
+from . import utils
 
 
 __author__ = """Antonino Ingargiola"""
