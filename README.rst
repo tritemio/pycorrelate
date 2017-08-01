@@ -13,11 +13,6 @@ Pycorrelate
         :target: https://pycorrelate.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://pyup.io/repos/github/tritemio/pycorrelate/shield.svg
-     :target: https://pyup.io/repos/github/tritemio/pycorrelate/
-     :alt: Updates
-
-
 **Pycorrelate** computes fast and accurate cross-correlation over
 arbitrary time lags.
 Cross-correlations can be calculated on "uniformly-sampled" signals
