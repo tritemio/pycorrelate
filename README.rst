@@ -40,10 +40,10 @@ Two types of correlations are implemented:
 - `pcorrelate <https://pycorrelate.readthedocs.io/en/latest/api.html#pycorrelate.pycorrelate.pcorrelate>`__:
   cross-correlation of discrete events
   in a point-process. In this case input arrays can be timestamps or
-  positions of "events", for example are **photon arrival times**.
+  positions of "events", for example **photon arrival times**.
   This function implements the algorithm in
   `Laurence et al. Optics Letters (2006) <https://doi.org/10.1364/OL.31.000829>`__.
-  This algorithm is a generalization of the multi-tau algorithm which retains
+  This is a generalization of the multi-tau algorithm which retains
   high execution speed while allowing arbitrary time-lag bins.
 
 Pycorrelate is implemented in Python 3 and operates on standard numpy arrays.
