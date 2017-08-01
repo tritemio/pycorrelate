@@ -16,16 +16,6 @@ requirements = [
     'numba',
 ]
 
-setup_requirements = [
-    'pytest-runner',
-    # TODO(tritemio): put setup requirements (distutils extensions, etc.) here
-]
-
-test_requirements = [
-    'pytest',
-    'h5py'
-]
-
 setup(
     name='pycorrelate',
     version='0.1.0',
@@ -49,7 +39,4 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    test_suite='tests',
-    tests_require=test_requirements,
-    setup_requires=setup_requirements,
 )
