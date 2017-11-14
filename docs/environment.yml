@@ -15,5 +15,6 @@ dependencies:
 - sphinx_rtd_theme
 - tornado
 - entrypoints
+- lmfit
 - pip:
     - nbsphinx>=0.2.12
