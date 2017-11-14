@@ -8,8 +8,45 @@ import numba
 
 
 @numba.jit(nopython=True)
+def pnormalize(G, t, u, bins):
+    r"""Normalize point-process cross-correlation function.
+
+    This normalization is usually employed for fluorescence correlation
+    spectroscopy (FCS) analysis.
+    The normalization is performed according to
+    `(Laurence 2006) <https://doi.org/10.1364/OL.31.000829>`__.
+    Basically, the input argument `G` is multiplied by:
+
+    .. math::
+        \frac{T-\tau}{n(\{i \ni t_i \le T - \tau\})n(\{j \ni u_j \ge \tau\})}
+
+    where `n({})` is the operator counting the elements in a set, *t* and *u*
+    are the input arrays of the correlation, *τ* is the time lag and *T*
+    is the measurement duration.
+
+    Arguments:
+        G (array): raw cross-correlation to be normalized.
+        t (array): first input array of "points" used to compute `G`.
+        u (array): second input array of "points" used to compute `G`.
+        bins (array): array of bins used to compute `G`. Needs to have the
+            same units as input arguments `t` and `u`.
+
+    Returns:
+        Array of normalized values for the cross-correlation function,
+        same size as the input argument `G`.
+    """
+    duration = max((t.max(), u.max())) - min((t.min(), u.min()))
+    Gn = G.copy()
+    for i, tau in enumerate(bins[1:]):
+        Gn[i] *= ((duration - tau) /
+                  (float((t >= tau).sum()) *
+                   float((u <= (u.max() - tau)).sum())))
+    return Gn
+
+
+@numba.jit(nopython=True)
 def pcorrelate(t, u, bins):
-    """Compute correlation of two arrays of descrete events (point-process).
+    """Compute correlation of two arrays of discrete events (Point-process).
 
     The input arrays need to be values of a point process, such as
     photon arrival times or positions. The correlation is efficiently
