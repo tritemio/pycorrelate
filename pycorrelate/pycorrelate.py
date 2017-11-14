@@ -45,7 +45,7 @@ def pnormalize(G, t, u, bins):
 
 
 @numba.jit(nopython=True)
-def pcorrelate(t, u, bins):
+def pcorrelate(t, u, bins, normalize=False):
     """Compute correlation of two arrays of discrete events (Point-process).
 
     The input arrays need to be values of a point process, such as
@@ -61,6 +61,9 @@ def pcorrelate(t, u, bins):
         u (array): second array of "points" to correlate. The array needs
             to be monothonically increasing.
         bins (array): bin edges for lags where correlation is computed.
+        normalize (bool): if True, normalize the correlation function
+            as typically done in FCS using :func:`pnormalize`. If False,
+            return the unnormalized correlation function.
 
     Returns:
         Array containing the correlation of `t` and `u`.
@@ -72,7 +75,7 @@ def pcorrelate(t, u, bins):
     nbins = len(bins) - 1
 
     # Array of counts (histogram)
-    Y = np.zeros(nbins, dtype=np.int64)
+    counts = np.zeros(nbins, dtype=np.int64)
 
     # For each bins, imin is the index of first `u` >= of each left bin edge
     imin = np.zeros(nbins, dtype=np.int64)
@@ -103,8 +106,11 @@ def pcorrelate(t, u, bins):
             imax[k] = j
             # Now j is the index of the first `u` element >= of
             # the next bin left edge
-        Y += imax - imin
-    return Y / np.diff(bins)
+        counts += imax - imin
+    G = counts / np.diff(bins)
+    if normalize:
+        G = pnormalize(G, t, u, bins)
+    return G
 
 
 @numba.jit
