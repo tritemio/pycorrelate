@@ -134,8 +134,8 @@ def ucorrelate(t, u, maxlag=None):
 
     Returns:
         Array contained the correlation at different lags.
-        The size of this array is `maxlags` (if defined) or
-        `min(tx.size, tu.size) - 1`.
+        The size of this array is equal to the input argument `maxlag`
+        (if defined) or to `min(tx.size, tu.size) - 1`.
 
     Example:
 
