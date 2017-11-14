@@ -10,6 +10,7 @@ Documentation
    usage
    api
    notebooks/pycorrelate-examples
+   notebooks/Simple FCS example
    contributing
    authors
    history
