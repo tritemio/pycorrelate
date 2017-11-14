@@ -1,6 +1,6 @@
 """
-The following functions to compute linear correlation on discrete signals
-or on point-processes (e.g. timestamps).
+Functions to compute linear correlation on discrete signals (uniformly
+sampled in time) **or** on point-processes (e.g. timestamps of events).
 """
 
 import numpy as np
@@ -50,8 +50,9 @@ def pcorrelate(t, u, bins, normalize=False):
 
     The input arrays need to be values of a point process, such as
     photon arrival times or positions. The correlation is efficiently
-    computed on an arbitrary array of lag-bins. For example bins can be
+    computed on an arbitrary array of lag-bins. As an example, bins can be
     uniformly spaced in log-space and span several orders of magnitudes.
+    (you can use :func:`make_loglags` to creat log-spaced bins).
     This function implements the algorithm described in
     `(Laurence 2006) <https://doi.org/10.1364/OL.31.000829>`__.
 
