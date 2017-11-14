@@ -71,7 +71,7 @@ def pcorrelate(t, u, bins):
 
 
 @numba.jit
-def ucorrelate(t, u, maxlags=None):
+def ucorrelate(t, u, maxlag=None):
     """Compute correlation of two signals defined at uniformly-spaced points.
 
     The correlation is defined only for positive lags (including zero).
@@ -85,7 +85,7 @@ def ucorrelate(t, u, maxlags=None):
     Arguments:
         tx (array): first signal to be correlated
         ux (array): second signal to be correlated
-        maxlags (int): number of lags wher correlation is computed.
+        maxlag (int): number of lags where correlation is computed.
             If None, computes all the lags where signals overlap
             `min(tx.size, tu.size) - 1`.
 
@@ -109,11 +109,11 @@ def ucorrelate(t, u, maxlags=None):
             >>> np.correlate(u, t, mode='full')[t.size - 1:]
             array([2, 3, 0])
     """
-    if maxlags is None:
-        maxlags = u.size
-    maxlags = int(min(u.size, maxlags))
-    C = np.zeros(maxlags, dtype=np.int64)
-    for lag in range(maxlags):
+    if maxlag is None:
+        maxlag = u.size
+    maxlag = int(min(u.size, maxlag))
+    C = np.zeros(maxlag, dtype=np.int64)
+    for lag in range(C.size):
         tmax = min(u.size - lag, t.size)
         umax = min(u.size, t.size + lag)
         C[lag] = (t[:tmax] * u[lag:umax]).sum()
@@ -139,7 +139,7 @@ def make_loglags(exp_min, exp_max, points_per_base, base=10):
     Example:
 
         Compute log10-spaced bins with 2 bins per decade, starting
-        from 10^-1 and stopping at 10^3::
+        from 10⁻¹ and stopping at 10³::
 
             >>> make_loglags(-1, 3, 2)
             array([  1.00000000e-01,   3.16227766e-01,   1.00000000e+00,
