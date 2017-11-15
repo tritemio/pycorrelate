@@ -4,6 +4,7 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+import versioneer
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -18,7 +19,8 @@ requirements = [
 
 setup(
     name='pycorrelate',
-    version='0.2.1',
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     description="Fast and accurate timestamps correlation in python.",
     long_description=readme + '\n\n' + history,
     author="Antonino Ingargiola",
