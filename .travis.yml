@@ -12,7 +12,7 @@ before_install:
     - conda config --add channels conda-forge
 
 install:
-    - conda install --yes python=$TRAVIS_PYTHON_VERSION pip numba pytest matplotlib lmfit nbconvert ipykernel
+    - conda install --yes python=$TRAVIS_PYTHON_VERSION pip numba pytest h5py matplotlib lmfit nbconvert ipykernel
     - python setup.py build
     - pip install .
     - rm -rf build/
