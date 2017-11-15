@@ -19,5 +19,7 @@ install:
 
 script:
     - py.test -v
+    - cd docs/notebooks
+    - python ../../tests/nbrun.py .
 
 sudo: false
