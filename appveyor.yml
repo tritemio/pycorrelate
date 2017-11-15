@@ -1,0 +1,37 @@
+build: false
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
+      MINICONDA: C:\Miniconda35-x64
+
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+      MINICONDA: C:\Miniconda36-x64
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH% %MINICONDA%"
+
+install:
+  - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda config --append channels conda-forge
+  - "conda create -q -n test-environment python=%PYTHON_VERSION% pip numba pytest h5py matplotlib lmfit nbconvert ipykernel"
+  - activate test-environment
+  - python --version
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - dir
+  - python setup.py build
+  - pip install .
+  - python setup.py clean --all
+
+test_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - py.test -v
+  - cd docs/notebooks
+  - python ../../tests/nbrun.py .
