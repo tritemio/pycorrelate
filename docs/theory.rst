@@ -56,12 +56,12 @@ considering the k-th time-lag bin :math:`[\tau_k, \tau_{k+1})`,
 for all the possible *i* and *j* combinations.
 
 .. math::
-    C(k) = n(\{(i,j) \ni t_i < u_i - \tau_k\})
+    C(k) = n(\{(i,j) \ni t_i < u_i - \Delta\tau_k\})
 
 where `n({})` is the operator counting the elements in a set,
-:math:`\tau_k` is the duration of the k-th time lag and *T*
+:math:`\Delta\tau_k` is the duration of the k-th time lag and *T*
 is the measurement duration.
-Normally we want the normalized expression, that is:
+Normally we want the normalized CCF, that is:
 
 .. math::
     G(k) = \frac{n(\{(i,j) \ni t_i < u_i - \Delta\tau_k\})(T-\Delta\tau_k)}
