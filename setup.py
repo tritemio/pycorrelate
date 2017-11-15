@@ -18,7 +18,7 @@ requirements = [
 
 setup(
     name='pycorrelate',
-    version='0.1.0',
+    version='0.2.0',
     description="Fast and accurate timestamps correlation in python.",
     long_description=readme + '\n\n' + history,
     author="Antonino Ingargiola",
