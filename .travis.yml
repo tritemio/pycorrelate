@@ -1,29 +1,23 @@
-# Config file for automatic testing at travis-ci.org
-# This file will be regenerated if you run travis_pypi_setup.py
-
 language: python
+
 python:
-  - 3.5
-  - 3.4
-  - 3.3
-  - 2.7
-  - 2.6
+    - "3.5"
+    - "3.6"
 
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox-travis
+before_install:
+    - wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    - chmod +x miniconda.sh
+    - ./miniconda.sh -b
+    - export PATH=/home/travis/miniconda3/bin:$PATH
+    - conda config --add channels conda-forge
 
-# command to run tests, e.g. python setup.py test
-script: tox
+install:
+    - conda install --yes python=$TRAVIS_PYTHON_VERSION pip numba pytest matplotlib lmfit nbconvert ipykernel
+    - python setup.py build
+    - pip install .
+    - rm -rf build/
 
-# After you create the Github repo and add it to Travis, run the
-# travis_pypi_setup.py script to finish PyPI deployment setup
-deploy:
-  provider: pypi
-  distributions: sdist bdist_wheel
-  user: tritemio
-  password:
-    secure: PLEASE_REPLACE_ME
-  on:
-    tags: true
-    repo: tritemio/pycorrelate
-    python: 2.7
+script:
+    - py.test -v
+
+sudo: false
