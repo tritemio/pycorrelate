@@ -1,4 +1,4 @@
-from .pycorrelate import *
+from .pycorrelate import pcorrelate, ucorrelate, make_loglags, pnormalize
 from . import utils
 
 
