@@ -29,7 +29,7 @@ Two types of correlations are implemented:
   the classical text-book linear cross-correlation between two signals
   defined at **uniformly spaced** intervals.
   Only positive lags are computed and a max lag can be specified.
-  Thanks to the limit in the computed lags, this function is much faster than
+  Thanks to the limit in the computed lags, this function can be much faster than
   `numpy.correlate <https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate>`__.
 
 - `pcorrelate <https://pycorrelate.readthedocs.io/en/latest/api.html#pycorrelate.pycorrelate.pcorrelate>`__:

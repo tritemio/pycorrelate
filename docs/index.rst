@@ -11,6 +11,7 @@ Documentation
    api
    notebooks/pycorrelate-examples
    notebooks/Simple FCS example
+   theory
    contributing
    authors
    history
