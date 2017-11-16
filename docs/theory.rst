@@ -34,9 +34,11 @@ real discrete-time signals :math:`\{A_i\}` and
 
 The previous formula is implemented by :func:`ucorrelate` and
 `numpy.correlate <https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate>`__.
+The difference is that :func:`ucorrelate` only computes positive lags and
+allows setting a max lag for efficiency.
 
 Binning timestamps to obtain timetraces would be very inefficient for FCS
-analysis where time-lags spans may orders of magnitude.
+analysis where time-lags span may orders of magnitude.
 It is much more efficient to directly compute the cross-correlation function
 from timestamps.
 The popular multi-tau algorithm allows computing the correlation directly
@@ -48,12 +50,13 @@ time-lags, with similar performances as the multi-tau.
 Computing cross-correlation :math:`C(\tau)` from timestamps is fundamentally
 a counting tasks. Given two timestamps arrays *t* and *u* and
 considering the k-th time-lag bin :math:`[\tau_k, \tau_{k+1})`,
-:math:`C(k)` is the number of pairs where:
+:math:`C(k)` is equal to the number of pairs where:
 
 .. math::
     \tau_k \le t_i - u_j < \tau_{k+1}
 
 for all the possible *i* and *j* combinations.
+The full expression for :math:`C(k)` is:
 
 .. math::
     C(k) = \frac{n(\{(i,j) \ni t_i < u_i - \Delta\tau_k\})}{\Delta\tau_k}
@@ -75,9 +78,9 @@ where the argument `normalize` allows choosing between the normalized
 and unnormalized version.
 
 .. note::
-    In *Laurence 2006* the expression for *G(k)* (there called
+    Due to a typo, in *Laurence 2006*, the expression for *G(k)* (they call it
     :math:`C_{AB}(\tau)`) does not include the :math:`\Delta\tau_k`
-    in the denominator due to a typo.
+    in the denominator.
 
 References
 ----------
