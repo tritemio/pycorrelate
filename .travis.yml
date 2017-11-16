@@ -13,13 +13,18 @@ before_install:
 
 install:
     - conda install --yes python=$TRAVIS_PYTHON_VERSION pip numba pytest h5py matplotlib lmfit nbconvert ipykernel
+    - pip install pytest-cov
+    - pip install python-coveralls
     - python setup.py build
     - pip install .
     - rm -rf build/
 
 script:
-    - py.test -v
+    - py.test --cov=pycorrelate -v
     - cd docs/notebooks
     - python ../../tests/nbrun.py .
+
+after_success:
+  - coveralls
 
 sudo: false
