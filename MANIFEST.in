@@ -4,10 +4,13 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 
-recursive-include tests *.py *.ipynb
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+recursive-exclude * *.hdf5
+recursive-exclude tests *.ipynb
 
 recursive-include docs *.rst conf.py Makefile make.bat *.ipynb
+recursive-include tests *.py
+
 include versioneer.py
 include pycorrelate/_version.py
