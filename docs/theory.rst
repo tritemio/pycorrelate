@@ -73,14 +73,14 @@ For FCS we normally want the normalized CCF, that is:
            \frac{(T-\Delta\tau_k)}{\Delta\tau_k}
     :label: Gk
 
-Eq. :eq:`Ck` and :eq:`Gk` are implemented by :func:`pcorrelate`,
-where the argument `normalize` allows choosing between the normalized
-and unnormalized version.
+Both eq. :eq:`Ck` and :eq:`Gk` are implemented by :func:`pcorrelate`.
+You can choose between the normalized and unnormalized version with the
+input argument `normalize`.
 
 .. note::
-    Due to a typo, in *Laurence 2006*, the expression for *G(k)* (they call it
-    :math:`C_{AB}(\tau)`) does not include the :math:`\Delta\tau_k`
-    in the denominator.
+    Due to a typo, in *Laurence 2006*, the expression for *G(k)*
+    (which they call :math:`C_{AB}(\tau)`) is missing the term
+    :math:`\Delta\tau_k` in the denominator.
 
 References
 ----------
